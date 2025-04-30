@@ -34,5 +34,9 @@ namespace eeprom_25lc040a {
         constexpr uint8_t  OPCODE_A8_BIT_POS = 3;
     }
     
+    namespace timing {
+        constexpr uint32_t WRITE_CYCLE_MAX_MS   = 5;  // tWC (max) 5 ms
+        constexpr uint32_t WRITE_CYCLE_GUARD_MS = 1;  // extra guard for timeout
+    }
 
 }  // namespace eeprom_25lc040a

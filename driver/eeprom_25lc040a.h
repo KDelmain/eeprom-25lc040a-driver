@@ -13,6 +13,14 @@ public:
     static constexpr uint16_t MEMORY_SIZE_BYTES = 512;
     static constexpr uint8_t PAGE_SIZE_BYTES = 16;
 
+    /** @brief Array-level block-protection options (STATUS BP1:BP0). */
+    enum class BlockProtect : uint8_t {
+        None    = 0,  // 00 – no protection
+        Quarter = 1,  // 01 – upper-quarter protected
+        Half    = 2,  // 10 – upper-half protected
+        All     = 3   // 11 – full-array protected
+    };
+
     Eeprom25LC040A(SpiInterface& spi,
                     GpioInterface& cs,
                     GpioInterface& hold,
@@ -72,6 +80,33 @@ public:
      */
     bool WriteStatus(uint8_t status);
 
+/*** Control ***/
+
+    /**
+     * @brief Set block protection level (BP1:BP0 bits) to restrict write access.
+     */
+    bool SetBlockProtect(BlockProtect level);
+
+    /**
+     * @brief Disable hardware write protection by setting WP# high.
+     */
+    void DisableHardwareWriteProtect();
+
+    /**
+     * @brief Enable hardware write protection by setting WP# low.
+     */
+    void EnableHardwareWriteProtect();
+
+    /**
+     * @brief Pause EEPROM activity using HOLD# (active low).
+     */
+    void Pause();
+
+    /**
+     * @brief Resume EEPROM activity by deasserting HOLD#.
+     */
+    void Resume();
+
 private:
     SpiInterface& spi_interface_;
     GpioInterface& chip_select_pin_;
@@ -83,6 +118,8 @@ private:
     void Deselect();
 
     bool WriteEnable();
+    bool WriteDisable();
+
     bool WaitForWriteComplete();
 
     bool IsSamePage(uint16_t address, uint8_t length);
