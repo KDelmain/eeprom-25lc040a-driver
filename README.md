@@ -1,7 +1,9 @@
 # EEPROM 25LC040A Driver
 
-A C++17 driver for the **Microchip 25LC040A**, a 4Kbit SPI EEPROM memory chip.  
-This driver is portable, testable, and designed with hardware abstraction in mind. This makes it easy to reuse across embedded platforms or host-based simulations.
+A modern C++17 driver for the **Microchip 25LC040A**, a 4Kbit SPI EEPROM memory chip.  
+This driver provides read/write access and is designed for use in bare-metal embedded systems, cross-platform host testing, or HAL abstraction layers.
+
+It is portable, testable, and interface-based, making it easy to integrate with STM32, AVR, or any other microcontroller with SPI support.
 
 [Microchip 25LC040A Product Page](https://www.microchip.com/en-us/product/25LC040A)
 
