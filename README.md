@@ -41,6 +41,8 @@ This driver targets the following EEPROM device:
 
 *TBD*
 
+---
+
 ## Additional Notes
 
 **Disclaimer:** This driver is currently untested on actual hardware. 
