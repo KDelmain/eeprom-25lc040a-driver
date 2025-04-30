@@ -2,6 +2,7 @@
 #include <cstdint>
 #include "interfaces/gpio_interface.h"
 #include "interfaces/spi_interface.h"
+#include "interfaces/timer_interface.h"
 #include "driver/eeprom_25lc040a_constants.h"
 
 /**
@@ -12,7 +13,11 @@ public:
     static constexpr uint16_t MEMORY_SIZE_BYTES = 512;
     static constexpr uint8_t PAGE_SIZE_BYTES = 16;
 
-    Eeprom25LC040A(SpiInterface& spi, GpioInterface& cs, GpioInterface& hold, GpioInterface& wp);
+    Eeprom25LC040A(SpiInterface& spi,
+                    GpioInterface& cs,
+                    GpioInterface& hold,
+                    GpioInterface& wp,
+                    TimerInterface& timer);
 
     /**
      * @brief Sets GPIO pins to idle state.
@@ -72,6 +77,7 @@ private:
     GpioInterface& chip_select_pin_;
     GpioInterface& hold_pin_;
     GpioInterface& write_protect_pin_;
+    TimerInterface& timer_;
 
     void Select();
     void Deselect();
