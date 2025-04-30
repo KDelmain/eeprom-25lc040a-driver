@@ -86,4 +86,7 @@ private:
     bool WaitForWriteComplete();
 
     bool IsSamePage(uint16_t address, uint8_t length);
+    bool IsValidBuffer(const void* ptr, uint16_t length) const;
+    bool IsWithinMemoryBounds(uint16_t address, uint16_t length) const;
+    bool IsValidPageWrite(uint16_t address, uint8_t length) const;
 };

@@ -28,4 +28,11 @@ namespace eeprom_25lc040a {
         constexpr uint8_t BLOCK_PROTECT_BIT_1    = 0x08;  // Block protect MSB (BP1)
     }
 
+    namespace internal {
+        constexpr uint16_t ADDRESS_A8_MASK = 0x100;
+        constexpr uint8_t  ADDRESS_A8_BIT_POS = 8;
+        constexpr uint8_t  OPCODE_A8_BIT_POS = 3;
+    }
+    
+
 }  // namespace eeprom_25lc040a
